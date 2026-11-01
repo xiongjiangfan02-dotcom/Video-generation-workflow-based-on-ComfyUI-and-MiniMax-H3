@@ -1,0 +1,296 @@
+{
+  "1": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "AbsoluteReality_1.8.1_pruned.safetensors"
+    }
+  },
+  "2": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "cinematic live action film still, photorealistic, one adult East Asian woman, 23 years old, shoulder length straight black hair, gray blue loose shirt, medium close up, front facing, face fully visible, natural closed mouth, standing inside a modest apartment at night, warm practical lamp, natural skin texture, realistic eyes, soft cinematic lighting, 50mm lens",
+      "clip": [
+        "1",
+        1
+      ]
+    }
+  },
+  "3": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "anime, illustration, cartoon, 3d render, painting, text, watermark, multiple people, duplicate face, blurry, deformed, bad anatomy, open mouth, extra fingers, plastic skin",
+      "clip": [
+        "1",
+        1
+      ]
+    }
+  },
+  "4": {
+    "class_type": "EmptyLatentImage",
+    "inputs": {
+      "width": 432,
+      "height": 768,
+      "batch_size": 1
+    }
+  },
+  "5": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "2",
+        0
+      ],
+      "negative": [
+        "3",
+        0
+      ],
+      "latent_image": [
+        "4",
+        0
+      ],
+      "seed": 42,
+      "steps": 24,
+      "cfg": 6.5,
+      "sampler_name": "dpmpp_2m",
+      "scheduler": "karras",
+      "denoise": 1.0
+    }
+  },
+  "6": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "5",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    }
+  },
+  "7": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "6",
+        0
+      ],
+      "filename_prefix": "short_drama/first_frames/EP01"
+    }
+  },
+  "101": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "102": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+      "type": "krea2",
+      "device": "default"
+    }
+  },
+  "103": {
+    "class_type": "ClipProjApply",
+    "inputs": {
+      "clip": [
+        "102",
+        0
+      ],
+      "projection": "mmh3-4b-ClipProj-v3-mlp.safetensors"
+    }
+  },
+  "104": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_int8_convrot.safetensors"
+    }
+  },
+  "105": {
+    "class_type": "ModelAttentionBackend",
+    "inputs": {
+      "model": [
+        "101",
+        0
+      ],
+      "attention": "comfy kitchen attention"
+    }
+  },
+  "106": {
+    "class_type": "MiniMaxH3SigmaShift",
+    "inputs": {
+      "model": [
+        "105",
+        0
+      ],
+      "shift_video": 12.0,
+      "shift_audio": 3.0
+    }
+  },
+  "108": {
+    "class_type": "MiniMaxH3ImageToVideo",
+    "inputs": {
+      "clip": [
+        "103",
+        0
+      ],
+      "vae": [
+        "104",
+        0
+      ],
+      "prompt": "真人影视近景，同一名成年女子，保持首帧的脸、发型、灰蓝色衬衫和室内背景。自然呼吸，轻轻眨眼，头部仅有微小动作，表情平静。固定镜头，嘴部自然放松，面部始终清晰可见，不遮挡嘴，不切换场景。",
+      "width": 288,
+      "height": 512,
+      "length": 124,
+      "first_frame": [
+        "6",
+        0
+      ]
+    }
+  },
+  "109": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "106",
+        0
+      ],
+      "conditioning": [
+        "108",
+        0
+      ]
+    }
+  },
+  "110": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "111": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "106",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1.0
+    }
+  },
+  "112": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 42
+    }
+  },
+  "113": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "112",
+        0
+      ],
+      "guider": [
+        "109",
+        0
+      ],
+      "sampler": [
+        "110",
+        0
+      ],
+      "sigmas": [
+        "111",
+        0
+      ],
+      "latent_image": [
+        "108",
+        1
+      ]
+    }
+  },
+  "114": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "113",
+        0
+      ],
+      "vae": [
+        "104",
+        0
+      ]
+    }
+  },
+  "115": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "114",
+        0
+      ],
+      "fps": 24.0,
+      "bit_depth": "auto",
+      "color_space": "sRGB",
+      "codec": "none"
+    }
+  },
+  "116": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "115",
+        0
+      ],
+      "filename_prefix": "short_drama/silent/EP01",
+      "format": "mp4",
+      "format.codec": "h264",
+      "format.codec.encoding": "auto"
+    }
+  },
+  "201": {
+    "class_type": "ShortDramaChineseTTS",
+    "inputs": {
+      "text": "有你在，好像也不错。",
+      "speaker_id": 45,
+      "speed": 1.0,
+      "filename_prefix": "EP01_Xiaoman"
+    }
+  },
+  "202": {
+    "class_type": "ShortDramaMuseTalk",
+    "inputs": {
+      "video": [
+        "115",
+        0
+      ],
+      "wav_path": [
+        "201",
+        1
+      ],
+      "filename_prefix": "EP01_dubbed"
+    }
+  },
+  "203": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "202",
+        0
+      ],
+      "filename_prefix": "short_drama/final/EP01",
+      "format": "mp4",
+      "format.codec": "h264",
+      "format.codec.encoding": "auto"
+    }
+  }
+}

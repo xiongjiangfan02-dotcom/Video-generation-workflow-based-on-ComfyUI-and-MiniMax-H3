@@ -1,0 +1,44 @@
+{
+  "201": {
+    "class_type": "ShortDramaChineseTTS",
+    "inputs": {
+      "text": "有你在，好像也不错。",
+      "speaker_id": 45,
+      "speed": 1.0,
+      "filename_prefix": "EP01_Xiaoman"
+    }
+  },
+  "202": {
+    "class_type": "ShortDramaLoadVideo",
+    "inputs": {
+      "video_path": "E:/AI/ComfyUI/input/dialogue_source.mp4"
+    }
+  },
+  "203": {
+    "class_type": "ShortDramaMuseTalk",
+    "inputs": {
+      "video": [
+        "202",
+        0
+      ],
+      "wav_path": [
+        "201",
+        1
+      ],
+      "filename_prefix": "EP01_dialogue"
+    }
+  },
+  "204": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "203",
+        0
+      ],
+      "filename_prefix": "short_drama/final/EP01_dialogue",
+      "format": "mp4",
+      "format.codec": "h264",
+      "format.codec.encoding": "auto"
+    }
+  }
+}

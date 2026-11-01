@@ -1,0 +1,217 @@
+{
+  "id": "222aaf55-8b0e-4287-a6da-330e87abc6fd",
+  "revision": 0,
+  "nodes": [
+    {
+      "id": 201,
+      "type": "ShortDramaChineseTTS",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        350,
+        300
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "name": "wav_path",
+          "type": "STRING",
+          "links": [
+            2
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShortDramaChineseTTS"
+      },
+      "widgets_values": [
+        "有你在，好像也不错。",
+        45,
+        1.0,
+        "EP01_Xiaoman"
+      ],
+      "title": "中文台词与声音编号"
+    },
+    {
+      "id": 202,
+      "type": "ShortDramaLoadVideo",
+      "pos": [
+        400,
+        0
+      ],
+      "size": [
+        350,
+        300
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShortDramaLoadVideo"
+      },
+      "widgets_values": [
+        "E:/AI/ComfyUI/input/dialogue_source.mp4"
+      ],
+      "title": "已有视频的完整路径"
+    },
+    {
+      "id": 203,
+      "type": "ShortDramaMuseTalk",
+      "pos": [
+        800,
+        0
+      ],
+      "size": [
+        350,
+        300
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 1
+        },
+        {
+          "name": "wav_path",
+          "type": "STRING",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "mp4_path",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShortDramaMuseTalk"
+      },
+      "widgets_values": [
+        "EP01_dialogue"
+      ],
+      "title": "单人对口型（嘴部需清晰）"
+    },
+    {
+      "id": 204,
+      "type": "SaveVideo",
+      "pos": [
+        1200,
+        0
+      ],
+      "size": [
+        350,
+        300
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "short_drama/final/EP01_dialogue",
+        "mp4",
+        "h264",
+        "auto"
+      ],
+      "title": "SaveVideo",
+      "widgets_values_named": {
+        "filename_prefix": "short_drama/final/EP01_dialogue",
+        "format": "mp4",
+        "format.codec": "h264",
+        "format.codec.encoding": "auto"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      202,
+      0,
+      203,
+      0,
+      "VIDEO"
+    ],
+    [
+      2,
+      201,
+      1,
+      203,
+      1,
+      "STRING"
+    ],
+    [
+      3,
+      203,
+      0,
+      204,
+      0,
+      "VIDEO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.65,
+      "offset": [
+        40,
+        40
+      ]
+    }
+  },
+  "version": 0.4,
+  "last_node_id": 204,
+  "last_link_id": 3
+}

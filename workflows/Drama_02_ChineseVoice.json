@@ -1,0 +1,61 @@
+{
+  "id": "3207096e-5ffd-4c03-a17c-e166af6e0d4e",
+  "revision": 0,
+  "nodes": [
+    {
+      "id": 201,
+      "type": "ShortDramaChineseTTS",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        350,
+        300
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "name": "wav_path",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShortDramaChineseTTS"
+      },
+      "widgets_values": [
+        "有你在，好像也不错。",
+        45,
+        1.0,
+        "EP01_Xiaoman"
+      ],
+      "title": "中文台词与声音编号"
+    }
+  ],
+  "links": [],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.65,
+      "offset": [
+        40,
+        40
+      ]
+    }
+  },
+  "version": 0.4,
+  "last_node_id": 201,
+  "last_link_id": 0
+}

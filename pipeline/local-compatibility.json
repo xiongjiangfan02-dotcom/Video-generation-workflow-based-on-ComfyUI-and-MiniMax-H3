@@ -1,0 +1,20 @@
+{
+  "upstream": "TMElyralab/MuseTalk",
+  "source_revision": "0a89dec45a0192b824e3cf4daf96c239440c5ed8",
+  "local_changes": [
+    {
+      "file": "musetalk/models/unet.py",
+      "change": "Load the verified checkpoint onto CPU before copying into the model to avoid duplicate CUDA weight storage."
+    },
+    {
+      "file": "musetalk/utils/utils.py",
+      "change": "Pass use_float16 into the existing UNet constructor."
+    },
+    {
+      "file": "scripts/inference.py",
+      "change": "Pass the CLI float16 setting into model loading before moving the UNet onto CUDA."
+    }
+  ],
+  "validated_device": "NVIDIA GeForce RTX 4060 Laptop GPU, 8GB VRAM",
+  "validation": "Standalone lip-sync and the complete SD/H3/Kokoro/MuseTalk pipeline passed."
+}

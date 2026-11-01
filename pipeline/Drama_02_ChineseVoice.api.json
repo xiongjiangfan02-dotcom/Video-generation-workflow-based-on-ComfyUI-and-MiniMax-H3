@@ -1,0 +1,11 @@
+{
+  "201": {
+    "class_type": "ShortDramaChineseTTS",
+    "inputs": {
+      "text": "有你在，好像也不错。",
+      "speaker_id": 45,
+      "speed": 1.0,
+      "filename_prefix": "EP01_Xiaoman"
+    }
+  }
+}

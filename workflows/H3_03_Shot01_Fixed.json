@@ -1,0 +1,1014 @@
+{
+  "id": "5bb2393c-b956-5860-9e25-09f7e68b8d01",
+  "revision": 0,
+  "last_node_id": 17,
+  "last_link_id": 18,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        340,
+        120
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "minimax_h3_fl2va_pruned_w4a8_mixed.safetensors",
+        "default"
+      ],
+      "title": "H3 低显存主模型"
+    },
+    {
+      "id": 2,
+      "type": "CLIPLoader",
+      "pos": [
+        0,
+        190
+      ],
+      "size": [
+        340,
+        140
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "qwen3vl_4b_int8_convrot.safetensors",
+        "krea2",
+        "default"
+      ],
+      "title": "小编码器（krea2）",
+      "widgets_values_named": {
+        "clip_name": "qwen3vl_4b_int8_convrot.safetensors",
+        "type": "krea2",
+        "device": "default"
+      }
+    },
+    {
+      "id": 3,
+      "type": "ClipProjApply",
+      "pos": [
+        400,
+        190
+      ],
+      "size": [
+        350,
+        120
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        },
+        {
+          "name": "projection",
+          "type": "COMBO",
+          "widget": {
+            "name": "projection"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ClipProjApply",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "mmh3-4b-ClipProj-v3-mlp.safetensors"
+      ],
+      "title": "4B 到 H3 必需适配",
+      "widgets_values_named": {
+        "projection": "mmh3-4b-ClipProj-v3-mlp.safetensors"
+      }
+    },
+    {
+      "id": 4,
+      "type": "VAELoader",
+      "pos": [
+        0,
+        390
+      ],
+      "size": [
+        340,
+        110
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            5,
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "minimax_h3_video_vae_int8_convrot.safetensors"
+      ],
+      "title": "视频解码模型"
+    },
+    {
+      "id": 5,
+      "type": "ModelAttentionBackend",
+      "pos": [
+        400,
+        0
+      ],
+      "size": [
+        350,
+        110
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        },
+        {
+          "name": "attention",
+          "type": "COMBO",
+          "widget": {
+            "name": "attention"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ModelAttentionBackend",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "comfy kitchen attention"
+      ],
+      "title": "低显存注意力"
+    },
+    {
+      "id": 6,
+      "type": "MiniMaxH3SigmaShift",
+      "pos": [
+        800,
+        0
+      ],
+      "size": [
+        300,
+        130
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        },
+        {
+          "name": "shift_video",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift_video"
+          },
+          "link": null
+        },
+        {
+          "name": "shift_audio",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift_audio"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            7,
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3SigmaShift",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        12.0,
+        3.0
+      ],
+      "title": "H3 采样设置"
+    },
+    {
+      "id": 8,
+      "type": "MiniMaxH3ImageToVideo",
+      "pos": [
+        800,
+        240
+      ],
+      "size": [
+        430,
+        390
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 5
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": null
+        },
+        {
+          "name": "length",
+          "type": "INT",
+          "widget": {
+            "name": "length"
+          },
+          "link": null
+        },
+        {
+          "name": "first_frame",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "last_frame",
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MiniMaxH3ImageToVideo",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "真人电影实拍质感。保持首帧中女性的面容、齐肩黑发、浅灰蓝衬衫和公寓走廊不变。她把手机贴在耳边安静倾听，轻轻呼出一口气，眼神从疲惫变得有一点无奈，最后露出很淡的笑。自然眨眼和呼吸，身体基本不动。固定中近景，冷白走廊光保持稳定，一个连续镜头，不切场景，不出现其他人物、字幕或文字",
+        288,
+        512,
+        124
+      ],
+      "title": "镜头01：走廊电话",
+      "widgets_values_named": {
+        "prompt": "真人电影实拍质感。保持首帧中女性的面容、齐肩黑发、浅灰蓝衬衫和公寓走廊不变。她把手机贴在耳边安静倾听，轻轻呼出一口气，眼神从疲惫变得有一点无奈，最后露出很淡的笑。自然眨眼和呼吸，身体基本不动。固定中近景，冷白走廊光保持稳定，一个连续镜头，不切场景，不出现其他人物、字幕或文字",
+        "width": 288,
+        "height": 512,
+        "length": 124
+      }
+    },
+    {
+      "id": 9,
+      "type": "BasicGuider",
+      "pos": [
+        1280,
+        0
+      ],
+      "size": [
+        260,
+        100
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 7
+        },
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "GUIDER",
+          "type": "GUIDER",
+          "slot_index": 0,
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicGuider",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [],
+      "title": "提示词引导"
+    },
+    {
+      "id": 10,
+      "type": "KSamplerSelect",
+      "pos": [
+        1280,
+        180
+      ],
+      "size": [
+        260,
+        90
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SAMPLER",
+          "type": "SAMPLER",
+          "slot_index": 0,
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSamplerSelect",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "euler"
+      ],
+      "title": "采样器"
+    },
+    {
+      "id": 11,
+      "type": "BasicScheduler",
+      "pos": [
+        1280,
+        330
+      ],
+      "size": [
+        260,
+        120
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 9
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "SIGMAS",
+          "type": "SIGMAS",
+          "slot_index": 0,
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BasicScheduler",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "simple",
+        20,
+        1.0
+      ],
+      "title": "采样步数",
+      "widgets_values_named": {
+        "scheduler": "simple",
+        "steps": 20,
+        "denoise": 1.0
+      }
+    },
+    {
+      "id": 12,
+      "type": "RandomNoise",
+      "pos": [
+        1280,
+        530
+      ],
+      "size": [
+        260,
+        90
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise_seed",
+          "type": "INT",
+          "widget": {
+            "name": "noise_seed"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "NOISE",
+          "type": "NOISE",
+          "slot_index": 0,
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RandomNoise",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        42,
+        "fixed"
+      ],
+      "title": "固定种子",
+      "widgets_values_named": {
+        "noise_seed": 42,
+        "control_after_generate": "fixed"
+      }
+    },
+    {
+      "id": 13,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        1620,
+        240
+      ],
+      "size": [
+        300,
+        180
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "noise",
+          "type": "NOISE",
+          "link": 10
+        },
+        {
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 11
+        },
+        {
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 12
+        },
+        {
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 13
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            15
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "slot_index": 1,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SamplerCustomAdvanced",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [],
+      "title": "生成视频"
+    },
+    {
+      "id": 14,
+      "type": "VAEDecode",
+      "pos": [
+        2000,
+        240
+      ],
+      "size": [
+        260,
+        110
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 15
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [],
+      "title": "解码画面"
+    },
+    {
+      "id": 15,
+      "type": "CreateVideo",
+      "pos": [
+        2320,
+        240
+      ],
+      "size": [
+        260,
+        100
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fps"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "slot_index": 0,
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CreateVideo",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        24.0,
+        "auto",
+        "sRGB",
+        "none"
+      ],
+      "title": "合成无声视频"
+    },
+    {
+      "id": 16,
+      "type": "SaveVideo",
+      "pos": [
+        2650,
+        240
+      ],
+      "size": [
+        380,
+        320
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveVideo",
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "short_drama/H3_Shot01_Fixed",
+        "mp4",
+        "h264",
+        "auto"
+      ],
+      "title": "保存到 E 盘",
+      "widgets_values_named": {
+        "filename_prefix": "short_drama/H3_Shot01_Fixed",
+        "format": "mp4",
+        "format.codec": "h264",
+        "format.codec.encoding": "auto"
+      }
+    },
+    {
+      "id": 17,
+      "type": "LoadImage",
+      "pos": [
+        400,
+        390
+      ],
+      "size": [
+        330,
+        300
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            6
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.65",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "version": "7.8",
+          "input_ue_unconnectable": {}
+        },
+        "local_source": "community 8GB graph; Spectrum removed"
+      },
+      "widgets_values": [
+        "h3_shot01_corridor.png",
+        "image"
+      ],
+      "title": "走廊首帧（可替换）",
+      "widgets_values_named": {
+        "image": "h3_shot01_corridor.png",
+        "upload": "image"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      1,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      5,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      4,
+      3,
+      0,
+      8,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      4,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      6,
+      17,
+      0,
+      8,
+      6,
+      "IMAGE"
+    ],
+    [
+      7,
+      6,
+      0,
+      9,
+      0,
+      "MODEL"
+    ],
+    [
+      8,
+      8,
+      0,
+      9,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      9,
+      6,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      10,
+      12,
+      0,
+      13,
+      0,
+      "NOISE"
+    ],
+    [
+      11,
+      9,
+      0,
+      13,
+      1,
+      "GUIDER"
+    ],
+    [
+      12,
+      10,
+      0,
+      13,
+      2,
+      "SAMPLER"
+    ],
+    [
+      13,
+      11,
+      0,
+      13,
+      3,
+      "SIGMAS"
+    ],
+    [
+      14,
+      8,
+      1,
+      13,
+      4,
+      "LATENT"
+    ],
+    [
+      15,
+      13,
+      0,
+      14,
+      0,
+      "LATENT"
+    ],
+    [
+      16,
+      4,
+      0,
+      14,
+      1,
+      "VAE"
+    ],
+    [
+      17,
+      14,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      18,
+      15,
+      0,
+      16,
+      0,
+      "VIDEO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.42,
+      "offset": [
+        60,
+        160
+      ]
+    },
+    "local_notes": {
+      "source": "reventadirecta/MiniMax-H3-ComfyUI-8GB-VRAM",
+      "changes": "First-frame only; no Spectrum; 4B encoder; silent MP4.",
+      "model_root": "E:\\AI\\ComfyUI\\models",
+      "output_root": "E:\\AI\\ComfyUI\\output",
+      "repair": "Replaced a Z-Image still-image graph containing H3 weights.",
+      "required_encoder_type": "krea2",
+      "required_projection": "mmh3-4b-ClipProj-v3-mlp.safetensors",
+      "first_frame_source": "Frame from an existing local corridor clip; replace for a different appearance."
+    }
+  },
+  "version": 0.4
+}

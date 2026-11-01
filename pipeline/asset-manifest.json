@@ -1,0 +1,161 @@
+{
+  "musetalk_source_revision": "0a89dec45a0192b824e3cf4daf96c239440c5ed8",
+  "assets": [
+    {
+      "repo": "Lykon/AbsoluteReality",
+      "revision": "df7c3efce8f54d02cf73a21fcecd908a0fde2898",
+      "source_file": "AbsoluteReality_1.8.1_pruned.safetensors",
+      "target": "E:\\AI\\ComfyUI\\models\\checkpoints\\AbsoluteReality_1.8.1_pruned.safetensors",
+      "url": "https://hf-mirror.com/Lykon/AbsoluteReality/resolve/df7c3efce8f54d02cf73a21fcecd908a0fde2898/AbsoluteReality_1.8.1_pruned.safetensors",
+      "size": 2132625432,
+      "sha256": "463d6a9fe8a4b56a4d69ef3692074c0617428dfd8e8f12f9efe3b1e9a71717ce"
+    },
+    {
+      "repo": "Lykon/AbsoluteReality",
+      "revision": "df7c3efce8f54d02cf73a21fcecd908a0fde2898",
+      "source_file": "README.md",
+      "target": "E:\\AI\\ComfyUI\\models\\checkpoints\\README.md",
+      "url": "https://hf-mirror.com/Lykon/AbsoluteReality/resolve/df7c3efce8f54d02cf73a21fcecd908a0fde2898/README.md"
+    },
+    {
+      "repo": "TMElyralab/MuseTalk",
+      "revision": "2bcb936e2fddb4d86db4c62fd45b387d0c061571",
+      "source_file": "musetalkV15/musetalk.json",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\musetalkV15\\musetalk.json",
+      "url": "https://hf-mirror.com/TMElyralab/MuseTalk/resolve/2bcb936e2fddb4d86db4c62fd45b387d0c061571/musetalkV15/musetalk.json"
+    },
+    {
+      "repo": "TMElyralab/MuseTalk",
+      "revision": "2bcb936e2fddb4d86db4c62fd45b387d0c061571",
+      "source_file": "musetalkV15/unet.pth",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\musetalkV15\\unet.pth",
+      "url": "https://hf-mirror.com/TMElyralab/MuseTalk/resolve/2bcb936e2fddb4d86db4c62fd45b387d0c061571/musetalkV15/unet.pth",
+      "size": 3400074924,
+      "sha256": "7ebf6c98c181e20838e4c0054e96e944ac60d5d692cc01db42839fe11b787007"
+    },
+    {
+      "repo": "TMElyralab/MuseTalk",
+      "revision": "2bcb936e2fddb4d86db4c62fd45b387d0c061571",
+      "source_file": "LICENSE.txt",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\LICENSE.txt",
+      "url": "https://hf-mirror.com/TMElyralab/MuseTalk/resolve/2bcb936e2fddb4d86db4c62fd45b387d0c061571/LICENSE.txt"
+    },
+    {
+      "repo": "stabilityai/sd-vae-ft-mse",
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "source_file": "config.json",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\sd-vae\\config.json",
+      "url": "https://hf-mirror.com/stabilityai/sd-vae-ft-mse/resolve/31f26fdeee1355a5c34592e401dd41e45d25a493/config.json"
+    },
+    {
+      "repo": "stabilityai/sd-vae-ft-mse",
+      "revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "source_file": "diffusion_pytorch_model.bin",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\sd-vae\\diffusion_pytorch_model.bin",
+      "url": "https://hf-mirror.com/stabilityai/sd-vae-ft-mse/resolve/31f26fdeee1355a5c34592e401dd41e45d25a493/diffusion_pytorch_model.bin",
+      "size": 334707217,
+      "sha256": "1b4889b6b1d4ce7ae320a02dedaeff1780ad77d415ea0d744b476155c6377ddc"
+    },
+    {
+      "repo": "openai/whisper-tiny",
+      "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "source_file": "config.json",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\whisper\\config.json",
+      "url": "https://hf-mirror.com/openai/whisper-tiny/resolve/169d4a4341b33bc18d8881c4b69c2e104e1cc0af/config.json"
+    },
+    {
+      "repo": "openai/whisper-tiny",
+      "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "source_file": "pytorch_model.bin",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\whisper\\pytorch_model.bin",
+      "url": "https://hf-mirror.com/openai/whisper-tiny/resolve/169d4a4341b33bc18d8881c4b69c2e104e1cc0af/pytorch_model.bin",
+      "size": 151095027,
+      "sha256": "9607f98a2b22d9e229ae43c52ecea79dcede9e0c5cfae67e8da6eda86d8aac1d"
+    },
+    {
+      "repo": "openai/whisper-tiny",
+      "revision": "169d4a4341b33bc18d8881c4b69c2e104e1cc0af",
+      "source_file": "preprocessor_config.json",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\whisper\\preprocessor_config.json",
+      "url": "https://hf-mirror.com/openai/whisper-tiny/resolve/169d4a4341b33bc18d8881c4b69c2e104e1cc0af/preprocessor_config.json"
+    },
+    {
+      "repo": "yzd-v/DWPose",
+      "revision": "1a7144101628d69ee7a3768d1ee3a094070dc388",
+      "source_file": "dw-ll_ucoco_384.pth",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\dwpose\\dw-ll_ucoco_384.pth",
+      "url": "https://hf-mirror.com/yzd-v/DWPose/resolve/1a7144101628d69ee7a3768d1ee3a094070dc388/dw-ll_ucoco_384.pth",
+      "size": 406878486,
+      "sha256": "0d9408b13cd863c4e95a149dd31232f88f2a12aa6cf8964ed74d7d97748c7a07"
+    },
+    {
+      "repo": "ManyOtherFunctions/face-parse-bisent",
+      "revision": "0073b233a5a3c4b1377d4dbf49245017938a72b5",
+      "source_file": "79999_iter.pth",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\face-parse-bisent\\79999_iter.pth",
+      "url": "https://hf-mirror.com/ManyOtherFunctions/face-parse-bisent/resolve/0073b233a5a3c4b1377d4dbf49245017938a72b5/79999_iter.pth",
+      "size": 53289463,
+      "sha256": "468e13ca13a9b43cc0881a9f99083a430e9c0a38abd935431d1c28ee94b26567"
+    },
+    {
+      "repo": "ManyOtherFunctions/face-parse-bisent",
+      "revision": "0073b233a5a3c4b1377d4dbf49245017938a72b5",
+      "source_file": "resnet18-5c106cde.pth",
+      "target": "E:\\AI\\ComfyUI\\pipeline\\MuseTalk\\models\\face-parse-bisent\\resnet18-5c106cde.pth",
+      "url": "https://hf-mirror.com/ManyOtherFunctions/face-parse-bisent/resolve/0073b233a5a3c4b1377d4dbf49245017938a72b5/resnet18-5c106cde.pth",
+      "size": 46827520,
+      "sha256": "5c106cde386e87d4033832f2996f5493238eda96ccf559d1d62760c4de0613f8"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "vits-aishell3.onnx",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\vits-aishell3.onnx",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/vits-aishell3.onnx",
+      "size": 121383104,
+      "sha256": "c37544d41bd1686b14e9ba157dc072e23bbf2bab2cdea271383e993abd6fdcae"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "tokens.txt",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\tokens.txt",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/tokens.txt"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "lexicon.txt",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\lexicon.txt",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/lexicon.txt"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "phone.fst",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\phone.fst",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/phone.fst"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "date.fst",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\date.fst",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/date.fst"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "number.fst",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\number.fst",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/number.fst"
+    },
+    {
+      "repo": "csukuangfj/vits-zh-aishell3",
+      "revision": "e3e808eaab2385b812286c6707323362251bba65",
+      "source_file": "README.md",
+      "target": "E:\\AI\\ComfyUI\\models\\tts\\vits-zh-aishell3\\README.md",
+      "url": "https://hf-mirror.com/csukuangfj/vits-zh-aishell3/resolve/e3e808eaab2385b812286c6707323362251bba65/README.md"
+    }
+  ]
+}
